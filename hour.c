@@ -1,4 +1,10 @@
+/*
+* program is calcutating your hour salary into weak salary
+* to correct functional you need to input amount of hours
+* and days
+*/
 #include<stdio.h>
+
 int per_day(int h, int days);
 int hours_count(int days);
 
@@ -6,7 +12,7 @@ int main(void)
 {
     int hour;
     int i = 0; int d = 0;
-    
+
     printf("Enter amount of hours: "); 
     while ((scanf("%d", &hour) != EOF) && (++i < 14))
     {

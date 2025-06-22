@@ -1,5 +1,6 @@
 #include<stdio.h>
 int per_day(int h, int days);
+int hours_count(int days);
 
 int main(void)
 {
@@ -30,6 +31,21 @@ int main(void)
     return 0;
 }
 
+int hour_count(int days)
+{
+    int h_pday;
+    int hours = 0;
+    int count_d = 0;
+    while (count_d++ <= days)
+    {
+        printf("Enter amount of hours you've been worked");
+        printf(" this week(each day)\n");
+        printf("Now enter hours of %d day.\n", count_d);
+        scanf("%d", &h_pday);
+        hours += h_pday;
+    }
+    return h_pday;
+}
 
 int per_day(int h, int days)
 {

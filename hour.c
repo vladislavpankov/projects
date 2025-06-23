@@ -1,5 +1,5 @@
 /*
-* program is calcutating your hour salary into weak salary
+* program is calcutating your hour salary into week salary
 * to correct functional you need to input amount of hours
 * and days
 */

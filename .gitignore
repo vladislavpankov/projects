@@ -1,0 +1,31 @@
+# Общие бинарные файлы
+*.exe
+*.dll
+*.so
+*.dylib
+*.class
+*.pyc
+*.pyo
+*.o
+*.a
+*.out
+
+# Папки сборки
+/build/
+/bin/
+/dist/
+/target/
+/Release/
+/Debug/
+/__pycache__/
+/obj/
+
+# JS/TS/Webpack/Babel
+*.tsbuildinfo
+*.map
+
+# Артефакты и временные файлы
+*.log
+*.tmp
+*.cache
+

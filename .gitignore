@@ -9,7 +9,7 @@
 *.o
 *.a
 *.out
-
+hour
 # Папки сборки
 /build/
 /bin/

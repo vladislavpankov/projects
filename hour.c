@@ -4,53 +4,97 @@
 * and days
 */
 #include<stdio.h>
+#include<stdbool.h>
+#include<string.h>
+#define MAX 150
 
+struct Barista {
+    char name[50];
+    bool isChief; // to add exstra pay
+    int work_hours; // work hours per week to calculate week salary
+};
+
+void printMenu(int *choice);
+void printStars(int count);
 int per_day(int h, int days);
-int hours_count(int days);
+void hour_count(int days);
+void addBarista(struct Barista db[], int *count);
 
 int main(void)
 {
+    struct Barista database[MAX];
+    int choice;
+    int count = 0;
     int hour;
     int i = 0; int d = 0;
-
-    printf("Enter amount of hours: "); 
-    while ((scanf("%d", &hour) != EOF) && (++i < 14))
+    bool statement = true;
+/* TO DO
+ * navigation menu
+ * edit addBarista function
+ * add printBarista function
+ * work on menu(of caffee positions)
+ */
+    while (statement)
     {
-        if (i == 1) 
-            printf("%d is amount of money for %d work hours.\n",
-                hour * 200, hour);
-        if (i > 1)
+        printMenu(&choice);
+        switch(choice)
         {
-            printf("If you need to calculate your salary");
-            printf(" for a few days\n");
-            printf("Enter amount of days or ctrl+D to quit.");
-            scanf("%d", &d);
-            per_day(hour, d);
-            printf("%d is amount of money your earned in %d days\n",
-                    per_day(hour, d), d);
-
+            case 1:
+                addBarista(database, &count);
+                break;
+            case 2:
+                hour_count(7);
+                break;
+            case 0:
+                printf("Goodbye!\n");
+                statement = false;
+                break;
+            default:
+                printf("You've entered wrong input!\n"); 
         }
-        printf("if you need to calculate anything else keep up!.\n");
     }
-    printf("%d - total amount of money.\n", per_day(hour, d));
+
     printf("End of code.\n");
     return 0;
 }
 
-int hour_count(int days)
+
+void printMenu(int *choice)
 {
-    int h_pday;
+    printStars(40);
+    printf("Choose option: \n");
+    printf("1. Add a barista.\n");
+    printf("2. Calculate working hours for employees.\n");
+    printf("0. Exit.\n");
+    printStars(40);
+
+    printf("Enter your choice: ");
+    scanf("%d", &(*choice)); 
+}
+
+void printStars(int n)
+{
+    int i;
+
+    for (i = 0; i < n; i++)
+        printf("*");
+    printf("\n");
+}
+// func of work hours counting 
+void hour_count(int days)
+{
+    int h_pday = 0;
     int hours = 0;
-    int count_d = 0;
-    while (count_d++ <= days)
+    int count_d = 0;    
+    printf("Enter amount of hours you've worked\n");
+    printf("for each day like 8 -> 4 etc.\n");
+    while (count_d++ < days)
     {
-        printf("Enter amount of hours you've been worked");
-        printf(" this week(each day)\n");
-        printf("Now enter hours of %d day.\n", count_d);
         scanf("%d", &h_pday);
         hours += h_pday;
-    }
-    return h_pday;
+    }   
+    printf("This barista worked for %d hours\n",
+            hours);
 }
 
 int per_day(int h, int days)
@@ -61,4 +105,30 @@ int per_day(int h, int days)
     for (i = 1; i <= days; i++)
         sum = sum + (hour * i);
     return sum;
+}
+
+// function to add barista to the db
+void addBarista(struct Barista db[], int *count)
+{
+    int clean;
+    int temp;
+    if (*count >= MAX)
+    {
+        printf("Database is full.\n");
+        return;
+    } 
+    while ((clean = getchar()) != '\n' && clean != EOF);
+    printf("Enter name: ");
+    fgets(db[*count].name, sizeof(db[*count].name), stdin);
+    db[*count].name[strcspn(db[*count].name, "\n")] = '\0';
+
+    printf("Is the person is chief barista?(1 to yes 0 to no)");
+    scanf("%d", &temp);
+    db[*count].isChief = temp ? true : false;
+
+    printf("Enter amount of hours you've been worked\n");
+    printf("this week\n");
+    scanf("%d", &db[*count].work_hours);
+
+    (*count)++;
 }

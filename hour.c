@@ -102,14 +102,11 @@ void hour_count(int days)
             hours);
 }
 
-int per_day(int h, int days)
+// function to calculate salary
+int per_day(int work_hours)
 {
-    int hour = 200;
-    int sum = 0;
-    int i;
-    for (i = 1; i <= days; i++)
-        sum = sum + (hour * i);
-    return sum;
+    int per = 200;
+    return per * work_hours;
 }
 
 // function to add barista to the db
@@ -122,7 +119,9 @@ void addBarista(struct Barista db[], int *count)
         printf("Database is full.\n");
         return;
     } 
+
     while ((clean = getchar()) != '\n' && clean != EOF);
+
     printf("Enter name: ");
     fgets(db[*count].name, sizeof(db[*count].name), stdin);
     db[*count].name[strcspn(db[*count].name, "\n")] = '\0';

@@ -19,6 +19,7 @@ void printStars(int count);
 int per_day(int h, int days);
 void hour_count(int days);
 void addBarista(struct Barista db[], int *count);
+void printBarista(struct Barista db[], int count);
 
 int main(void)
 {
@@ -45,6 +46,9 @@ int main(void)
             case 2:
                 hour_count(7);
                 break;
+            case 3:
+                printBarista(database, 0);
+                break;
             case 0:
                 printf("Goodbye!\n");
                 statement = false;
@@ -64,7 +68,8 @@ void printMenu(int *choice)
     printStars(40);
     printf("Choose option: \n");
     printf("1. Add a barista.\n");
-    printf("2. Calculate working hours for employees.\n");
+    printf("2. Print existing barista.\n");
+    printf("3. Calculate working hours for employees.\n");
     printf("0. Exit.\n");
     printStars(40);
 
@@ -131,4 +136,12 @@ void addBarista(struct Barista db[], int *count)
     scanf("%d", &db[*count].work_hours);
 
     (*count)++;
+}
+
+void printBarista(struct Barista db[], int count)
+{
+    int c;
+
+    if (count == 0)
+        printf("Database is empty.\n");
 }

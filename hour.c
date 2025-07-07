@@ -5,10 +5,9 @@
 */
 
 // TO DO
-// 1. printBarista fix
-// 2. add Menu for printBarista func
-// 3. Make output to the file .txt(for example)
-
+// 1. add Menu for printBarista func
+// 2. Make output to the file .txt(for example)
+// 3. printBarista fix (done, need minor fixes that comes after upper fixes)
 
 #include<stdio.h>
 #include<stdbool.h>
@@ -164,6 +163,7 @@ void printBarista(struct Barista db[], int *count)
     for (index = 0; index < *count; index++)
     {
         printf("%3d.", index+1 );
-        puts(db[index].name);
+        puts(db[index].name); // maybe change it into just printf
+        // need to think about functionality
     }
 }

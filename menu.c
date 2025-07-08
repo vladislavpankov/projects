@@ -1,22 +1,33 @@
 #include<stdio.h>
+#include "functions.h"
 
-typedef struct {
-    char name[50];
+#define MAX 150
+struct Product{
+    char name[MAX];
     float price;
-    int avaliable; // 1 or 0
-} Product;
+    _Bool avaliable; // 1 or 0
+};
 
-typedef struct {
-    char name[50];
-    char position[20];
-    int sp_hour;
-    
-    } Employee;
+void printPositionMenu(int *choice);
+void addPosition(struct Product db[], int *count);
 
 int main(void)
 {
-    Product cappuchino = {"Cappuchino", 240.0, 1};
-    Employee barista = {"Vladistas", "Komarova", 200};
-    printf("%s %s %d\n", barista.name, barista.position, barista.sp_hour);
+    struct Product database[MAX];
+    int count = 0;
+    int choirce = 0;
     return 0;
+}
+void printPositionMenu(int *choice)
+{
+    printStars(40);
+    printf("Choose option: \n");
+    printf("1. Add a position.\n");
+    printf("2. Print positions.\n");
+    printf("3. Print all position actions\n");
+    printf("0. Exit.\n");
+    printStars(40);
+
+    printf("Enter your choice: ");
+    scanf("%d", &(*choice)); 
 }

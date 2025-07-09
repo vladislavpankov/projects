@@ -14,23 +14,23 @@
 #include<string.h>
 #define MAX 150
 
-struct Barista {
+typedef struct {
     char name[50];
     bool isChief; // to add exstra pay
     int work_hours; // work hours per week to calculate week salary
-};
+} Barista;
 
 void PBMenu();
 void printMenu(int *choice);
 void printStars(int count);
 int per_day(int h, int days);
 void hour_count(int days);
-void addBarista(struct Barista db[], int *count);
-void printBarista(struct Barista db[], int *count);
+void addBarista(Barista db[], int *count);
+void printBarista(Barista db[], int *count);
 
 int main(void)
 {
-    struct Barista database[MAX];
+    Barista database[MAX];
     int choice;
     int count = 0;
     bool statement = true;
@@ -130,7 +130,7 @@ int per_day(int h, int work_hours)
 }
 
 // function to add barista to the db
-void addBarista(struct Barista db[], int *count)
+void addBarista(Barista db[], int *count)
 {
     int clean;
     int temp;
@@ -158,7 +158,7 @@ void addBarista(struct Barista db[], int *count)
     (*count)++;
 }
 
-void printBarista(struct Barista db[], int *count)
+void printBarista(Barista db[], int *count)
 {
     int index;
 

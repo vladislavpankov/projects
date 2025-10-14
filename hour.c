@@ -3,48 +3,50 @@
 * to correct functional you need to input amount of hours
 * and days
 */
-
-// TO DO
+// lol
+// TODO
 // 1. add Menu for printBarista func
 // 2. Make output to the file .txt(for example)
 // 3. printBarista fix (done, need minor fixes that comes after upper fixes)
-
+// TODO:
 #include<stdio.h>
 #include<stdbool.h>
 #include<string.h>
+#include"functions.h"
+
 #define MAX 150
 
-struct Barista {
+typedef struct {
     char name[50];
     bool isChief; // to add exstra pay
     int work_hours; // work hours per week to calculate week salary
-};
+} Barista;
 
-void PBMenu();
-void printMenu(int *choice);
-void printStars(int count);
-int per_day(int h, int days);
+void pb_menu();
+void print_menu(int *choice);
+void print_stars(int count);
+int per_day(int work_hours);
 void hour_count(int days);
-void addBarista(struct Barista db[], int *count);
-void printBarista(struct Barista db[], int *count);
+void add_barista(Barista db[], int *count);
+void print_barista(Barista db[], int *count);
 
 int main(void)
 {
-    struct Barista database[MAX];
+    Barista database[MAX];
     int choice;
     int count = 0;
     bool statement = true;
 
     while (statement)
     {
-        printMenu(&choice);
+        print_menu(&choice);
         switch(choice)
         {
             case 1:
-                addBarista(database, &count);
+                add_barista(database, &count);
                 break;
             case 2:
-                printBarista(database, &count);
+                print_barista(database, &count);
                 // PBMenu();
                 break;
             case 3:
@@ -55,7 +57,7 @@ int main(void)
                 statement = false;
                 break;
             default:
-                printf("You've entered wrong input!\n"); 
+                printf("You've entered wrong input!\n");
         }
     }
 
@@ -64,8 +66,13 @@ int main(void)
 }
 
 // main Menu function
-void printMenu(int *choice)
+void print_menu(int *choice)
 {
+    // TO DO
+    // 1. add a choice between positions(bar/food) and barista
+    // 2. edit program logic
+    // ********************
+    // make all actions in main.c -> store all functions in *.h
     printStars(40);
     printf("Choose option: \n");
     printf("1. Add a barista.\n");
@@ -75,24 +82,24 @@ void printMenu(int *choice)
     printStars(40);
 
     printf("Enter your choice: ");
-    scanf("%d", &(*choice)); 
+    scanf("%d", &(*choice));
 }
 
 // Special selection menu for printBarista function
-void PBMenu()
+void pb_menu()
 {
     int choice;
     printStars(40);
-    printf("1. Print all barista list.\n"); 
-    printf("2. Print all information about barista.\n"); 
+    printf("1. Print all barista list.\n");
+    printf("2. Print all information about barista.\n");
     printf("0. Exit.\n");
     printStars(40);
 
     printf("Enter your choice: ");
-    scanf("%d", &choice); 
+    scanf("%d", &choice);
 }
 
-void printStars(int n)
+void print_stars(int n)
 {
     int i;
 
@@ -100,32 +107,34 @@ void printStars(int n)
         printf("*");
     printf("\n");
 }
-// func of work hours counting 
+// func of work hours counting
 void hour_count(int days)
 {
     int h_pday = 0;
     int hours = 0;
-    int count_d = 0;    
+    int count_d = 0;
     printf("Enter amount of hours you've worked\n");
     printf("for each day like 8 -> 4 etc.\n");
     while (count_d++ < days)
     {
         scanf("%d", &h_pday);
         hours += h_pday;
-    }   
+    }
     printf("This barista worked for %d hours\n",
             hours);
+    printf("Barista salary is %d.\n",
+           per_day(hours));
 }
 
 // function to calculate salary
-int per_day(int h, int work_hours)
+int per_day(int work_hours)
 {
     int per = 200;
     return per * work_hours;
 }
 
 // function to add barista to the db
-void addBarista(struct Barista db[], int *count)
+void add_barista(Barista db[], int *count)
 {
     int clean;
     int temp;
@@ -133,7 +142,7 @@ void addBarista(struct Barista db[], int *count)
     {
         printf("Database is full.\n");
         return;
-    } 
+    }
 
     // buffer cleaning piece of code for fgets()
     while ((clean = getchar()) != '\n' && clean != '\0');
@@ -153,7 +162,7 @@ void addBarista(struct Barista db[], int *count)
     (*count)++;
 }
 
-void printBarista(struct Barista db[], int *count)
+void print_barista(Barista db[], int *count)
 {
     int index;
 

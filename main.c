@@ -4,14 +4,16 @@
 * and days
 */
 
-// TO DO
+// TODO
 // 1. add Menu for printBarista func
 // 2. Make output to the file .txt(for example)
 // 3. printBarista fix (done, need minor fixes that comes after upper fixes)
-
+// TODO:
 #include<stdio.h>
 #include<stdbool.h>
 #include<string.h>
+#include"functions.h"
+
 #define MAX 150
 
 typedef struct {
@@ -20,13 +22,13 @@ typedef struct {
     int work_hours; // work hours per week to calculate week salary
 } Barista;
 
-void PBMenu();
-void printMenu(int *choice);
-void printStars(int count);
+void pb_menu();
+void print_menu(int *choice);
+void print_stars(int count);
 int per_day(int work_hours);
 void hour_count(int days);
-void addBarista(Barista db[], int *count);
-void printBarista(Barista db[], int *count);
+void add_barista(Barista db[], int *count);
+void print_barista(Barista db[], int *count);
 
 int main(void)
 {
@@ -37,14 +39,14 @@ int main(void)
 
     while (statement)
     {
-        printMenu(&choice);
+        print_menu(&choice);
         switch(choice)
         {
             case 1:
-                addBarista(database, &count);
+                add_barista(database, &count);
                 break;
             case 2:
-                printBarista(database, &count);
+                print_barista(database, &count);
                 // PBMenu();
                 break;
             case 3:
@@ -64,7 +66,7 @@ int main(void)
 }
 
 // main Menu function
-void printMenu(int *choice)
+void print_menu(int *choice)
 {
     // TO DO
     // 1. add a choice between positions(bar/food) and barista
@@ -84,7 +86,7 @@ void printMenu(int *choice)
 }
 
 // Special selection menu for printBarista function
-void PBMenu()
+void pb_menu()
 {
     int choice;
     printStars(40);
@@ -97,7 +99,7 @@ void PBMenu()
     scanf("%d", &choice);
 }
 
-void printStars(int n)
+void print_stars(int n)
 {
     int i;
 
@@ -132,7 +134,7 @@ int per_day(int work_hours)
 }
 
 // function to add barista to the db
-void addBarista(Barista db[], int *count)
+void add_barista(Barista db[], int *count)
 {
     int clean;
     int temp;
@@ -160,7 +162,7 @@ void addBarista(Barista db[], int *count)
     (*count)++;
 }
 
-void printBarista(Barista db[], int *count)
+void print_barista(Barista db[], int *count)
 {
     int index;
 
